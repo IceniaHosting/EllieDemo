@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<center>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presidential Layout</title>
     <style>
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #80ffe0;
-            text-align: center;
-            overflow: hidden;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #80ffe0;
+        text-align: center;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;  /* Center everything horizontally */
+        justify-content: flex-start;  /* Start from the top */
+        height: 100vh;
         }
 
         .header1 {
@@ -41,8 +45,12 @@
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 2px;
-            width: 100%;
-            height: calc(100vh - 10vh);
+            width: 90vw; /* Allow the grid to take up 90% of the screen width */
+            height: calc(100vh - 10vh);  /* Remaining height after headers */
+            margin-top: 3.33vh;  /* Space below the second header */
+            display: grid;
+            justify-content: center; /* Center the entire grid container horizontally */
+            justify-items: center; /* Center the items (squares) within the grid cells */
         }
 
         .square {
@@ -53,8 +61,8 @@
             background-color: #66ffd9;
             border: 1px solid black;
             font-size: 2.5vh;
-            width: min(25vw, calc((100vh - 10vh) / 2));
-            height: min(25vw, calc((100vh - 10vh) / 2));
+            width: 100%; /* Allow the square to scale with the container */
+            height: 100%; /* Allow the square to scale with the container */
         }
 
         .bottom-square {
@@ -124,5 +132,4 @@
         Closable News Tab<br>Square
     </div>
 </body>
-<center>
 </html>
