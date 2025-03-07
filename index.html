@@ -11,7 +11,6 @@
             background: url('./Backgrounds.png') no-repeat center center fixed;
             background-size: cover;
             text-align: center;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -41,42 +40,13 @@
             font-size: 2vh;
         }
 
-        <footer>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home.DGov</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: url('./Backgrounds.png') no-repeat center center fixed;
-            background-size: cover;
-            text-align: center;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: 100vh;
-        }
-                .footer1 {
-            width: 100%;
-            height: 6.66vh;
-            background-color: #008f66;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5vh;
-        }
-
         .container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 2px;
-            width: 90vw;
-            height: calc(90vw / 2); /* Ensures square aspect ratio */
+            width: 70vw;
+            height: calc(70vw / 2); /* Ensures square aspect ratio */
             margin-top: 3.33vh;
         }
 
@@ -132,12 +102,25 @@
             top: 0;
             left: 0;
         }
+
+        /* Ensure footer stays at the bottom */
+        .footer1 {
+            width: 100%;
+            height: 6.66vh;
+            background-color: #008f66;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5vh;
+            margin-top: auto;
+        }
+
     </style>
 </head>
 <body>
     <div class="header1">Banner 60px down (6.66% of screen) (quick links and logo/name)</div>
     <div class="header2">Message/Slogan from President 30px down (3.33% of screen)</div>
-    <div class="footer1">Copyright Bob Bobson (Art) and Joe (Code) 60px down (6.66% of screen)</div>
     
     <div class="container">
         <div class="square"><img src="./Presdient_Portrait_Home_Screen_Box.jpg" alt="Presidential Portrait" style="width: 100%; height: 100%; object-fit: cover;"></div>
@@ -157,7 +140,9 @@
 
     <div class="bottom-square bottom-right">
         <div class="close-btn" onclick="this.parentElement.style.display='none'"></div>
-         Closable News Tab<br>Square
+        Closable News Tab<br>Square
     </div>
+
+    <div class="footer1">Copyright Bob Bobson (Art) and Joe (Code) 60px down (6.66% of screen)</div>
 </body>
 </html>
