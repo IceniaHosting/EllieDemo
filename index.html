@@ -6,16 +6,16 @@
     <title>Presidential Layout</title>
     <style>
         body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #80ffe0;
-        text-align: center;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;  /* Center everything horizontally */
-        justify-content: flex-start;  /* Start from the top */
-        height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #80ffe0;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
         }
 
         .header1 {
@@ -45,12 +45,9 @@
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 2px;
-            width: 90vw; /* Allow the grid to take up 90% of the screen width */
-            height: calc(100vh - 10vh);  /* Remaining height after headers */
-            margin-top: 3.33vh;  /* Space below the second header */
-            display: grid;
-            justify-content: center; /* Center the entire grid container horizontally */
-            justify-items: center; /* Center the items (squares) within the grid cells */
+            width: 90vw;
+            height: calc(90vw / 2); /* Ensures square aspect ratio */
+            margin-top: 3.33vh;
         }
 
         .square {
@@ -61,8 +58,8 @@
             background-color: #66ffd9;
             border: 1px solid black;
             font-size: 2.5vh;
-            width: 100%; /* Allow the square to scale with the container */
-            height: 100%; /* Allow the square to scale with the container */
+            width: 100%;
+            height: 100%;
         }
 
         .bottom-square {
@@ -112,7 +109,7 @@
     <div class="header2">Message/Slogan from President 30px down (3.33% of screen)</div>
     
     <div class="container">
-        <div class="square">Presidential Portrait<br>Square</div>
+        <div class="square"><img src="./Presdient_Portrait_Home_Screen_Box.png" alt="Presidential Portrait" style="width: 100%; height: 100%; object-fit: cover;"></div>
         <div class="square">Name<br>Square</div>
         <div class="square">Name<br>Square</div>
         <div class="square">Name<br>Square</div>
@@ -129,7 +126,7 @@
 
     <div class="bottom-square bottom-right">
         <div class="close-btn" onclick="this.parentElement.style.display='none'"></div>
-        Closable News Tab<br>Square
+        <img src="./News_Box.png" alt="News Box" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
 </body>
 </html>
