@@ -5,97 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home.Gov</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: url('./Backgrounds.png') no-repeat center center fixed;
-            background-size: cover;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            height: 100vh;
-            user-select: none;
-        }
-
-        .header1, .header2, .footer1 {
-            width: 100%;
-            text-align: center;
-            pointer-events: none;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(4, 400px);
-            grid-template-rows: repeat(2, 405px);
-            gap: 2px;
-        }
-
-        .square {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #66ffd9;
-            border: 1px solid black;
-            font-size: 2.5vh;
-            width: 400px;
-            height: 405px;
-        }
-
-        .bottom-square {
-            position: fixed;
-            width: min(16.875vw, 30vh);
-            height: min(16.875vw, 30vh);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #66ffd9;
-            border: 1px solid black;
-            font-size: 2vh;
-            user-select: none;
-        }
-
-        img {
-            pointer-events: none;
-        }
+        * { user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }
+        body { margin: 0; font-family: Arial, sans-serif; background: url('data:image/png;base64,REPLACEMEWITHBASE64') no-repeat center center fixed; background-size: cover; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; height: 100vh; }
+        .a1 { width: 100%; height: 6.66vh; background: #46c49b; color: white; display: flex; align-items: center; justify-content: center; font-size: 2.5vh; }
+        .a2 { width: 100%; height: 3.33vh; background: #e5a55e; color: black; display: flex; align-items: center; justify-content: center; font-size: 2vh; }
+        .b1 { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 2px; width: 88.33vw; height: 405px; }
+        .b2 { display: flex; align-items: center; justify-content: center; flex-direction: column; background: #66ffd9; border: 1px solid black; font-size: 2.5vh; width: 400px; height: 405px; }
+        .c1 { position: fixed; width: min(16.875vw, 30vh); height: min(16.875vw, 30vh); display: flex; align-items: center; justify-content: center; background: #66ffd9; border: 1px solid black; font-size: 2vh; }
+        .c2 { bottom: 0; left: 0; }
+        .c3 { bottom: 0; right: 0; }
+        .x { position: absolute; width: 10%; height: 10%; background: red; cursor: pointer; border-radius: 50%; }
+        .c2 .x { top: 0; right: 0; }
+        .c3 .x { top: 0; left: 0; }
+        .d1 { width: 100%; height: 3.33vh; background: #008f66; color: white; display: flex; align-items: center; justify-content: center; font-size: 2.5vh; margin-top: 3.33vh; }
     </style>
     <script>
         document.addEventListener('contextmenu', event => event.preventDefault());
-        document.addEventListener('keydown', function(event) {
-            if (event.ctrlKey && (event.key === 'u' || event.key === 'U' || event.key === 'c' || event.key === 'C')) {
-                event.preventDefault();
-            }
-        });
-        setInterval(() => {
-            console.clear();
-            console.log("Inspecting this page is not allowed.");
-        }, 1000);
+        document.addEventListener('keydown', event => { if (event.ctrlKey) event.preventDefault(); });
+        function generateContent() {
+            let c = document.createElement('div');
+            c.className = 'b1';
+            let d = ['data:image/png;base64,IMAGE1', 'About', 'Branches', 'Departments', 'data:image/png;base64,IMAGE2', 'data:image/png;base64,IMAGE3', 'Vote Archive', 'data:image/png;base64,IMAGE4'];
+            d.forEach(v => { let e = document.createElement('div'); e.className = 'b2'; if (v.startsWith('data:')) { let i = document.createElement('img'); i.src = v; i.style = 'width:100%;height:100%;object-fit:cover;'; e.appendChild(i); } else { e.innerHTML = v; } c.appendChild(e); });
+            document.body.insertBefore(c, document.querySelector('.d1'));
+        }
     </script>
 </head>
-<body>
-    <div class="header1">Banner 60px down (6.66% of screen) (quick links and logo/name)</div>
-    <div class="header2">Message/Slogan from President 30px down (3.33% of screen)</div>
-    
-    <div class="container">
-        <div class="square"><img src="./Presdient_Portrait_Home_Screen_Box.jpg" alt="President" style="width: 100%; height: 100%; object-fit: cover;"></div>
-        <div class="square">About<br>Square</div>
-        <div class="square">Government Branches<br>Square</div>
-        <div class="square">Government Departments<br>Square</div>
-        <div class="square"><img src="./Biographies_Box.jpg" alt="Biographies" style="width: 100%; height: 100%; object-fit: cover;"></div>
-        <div class="square"><img src="./Bank_Statistics_Box.jpg" alt="Bank Statistics" style="width: 100%; height: 100%; object-fit: cover;"></div>
-        <div class="square">Vote Archive<br>Square</div>
-        <div class="square"><img src="./News_Box.jpg" alt="News" style="width: 100%; height: 100%; object-fit: cover;"></div>
-    </div>
-    
-    <div class="bottom-square bottom-left">
-        Closable New Law Tab<br>Square
-    </div>
-    
-    <div class="bottom-square bottom-right">
-        Closable News Tab<br>Square
-    </div>
-    
-    <div class="footer1"> Home Page Gov (Joseph Redman (Code) & Bob Bobson (Some Code+Art/Design)) © 2025</div>
+<body onload="generateContent()">
+    <div class="a1">Banner</div>
+    <div class="a2">Slogan</div>
+    <div class="c1 c2"><div class="x" onclick="this.parentElement.style.display='none'"></div>Law</div>
+    <div class="c1 c3"><div class="x" onclick="this.parentElement.style.display='none'"></div>News</div>
+    <div class="d1">Home Page Gov &copy; 2025</div>
 </body>
 </html>
