@@ -63,6 +63,19 @@
             font-size: 2.5vh;
             width: 100%;
             height: 100%;
+            position: relative; /* This helps anchor inside to stretch correctly */
+        }
+
+        .s a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .s img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .bottom-square {
@@ -125,42 +138,41 @@
     <div class="header1">Banner 60px down (6.66% of screen) (quick links and logo/name)</div>
     <div class="header2">Message/Slogan from President 30px down (3.33% of screen)</div>
 
-<div class="container">
-    <div class="s">
-        <a href="/president/index.html" style="display: block;">
-            <img src="./Presdient_Portrait_Home_Screen_Box.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-        </a>
+    <div class="container">
+        <div class="s">
+            <a href="/president/index.html">
+                <img src="./Presdient_Portrait_Home_Screen_Box.jpg">
+            </a>
+        </div>
+        <div class="s">
+            <a href="/about/index.html">About</a>
+        </div>
+        <div class="s">
+            <a href="/government-branches/index.html">Government Branches</a>
+        </div>
+        <div class="s">
+            <a href="/government-departments/index.html">Government Departments</a>
+        </div>
+        <div class="s">
+            <a href="/biographies/index.html">
+                <img src="./Biographies_Box.jpg">
+            </a>
+        </div>
+        <div class="s">
+            <a href="/bank/index.html">
+                <img src="./Bank_Statistics_Box.jpg">
+            </a>
+        </div>
+        <div class="s">
+            <a href="/vote-archive/index.html">Vote Archive</a>
+        </div>
+        <div class="s">
+            <a href="/news/index.html">
+                <img src="./News_Box.jpg">
+            </a>
+        </div>
     </div>
-    <div class="s">
-        <a href="/about/index.html">About</a>
-    </div>
-    <div class="s">
-        <a href="/government-branches/index.html">Government Branches</a>
-    </div>
-    <div class="s">
-        <a href="/government-departments/index.html">Government Departments</a>
-    </div>
-    <div class="s">
-        <a href="/biographies/index.html" style="display: block;">
-            <img src="./Biographies_Box.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-        </a>
-    </div>
-    <div class="s">
-        <a href="/bank/index.html" style="display: block;">
-            <img src="./Bank_Statistics_Box.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-        </a>
-    </div>
-    <div class="s">
-        <a href="/vote-archive/index.html">Vote Archive</a>
-    </div>
-    <div class="s">
-        <a href="/news/index.html" style="display: block;">
-            <img src="./News_Box.jpg" style="width: 100%; height: 100%; object-fit: cover;">
-        </a>
-    </div>
-</div>
 
-    
     <div class="bottom-square bottom-left">
         <div class="close-btn" onclick="this.parentElement.style.display='none'"></div>
         Closable New Law Tab<br>Square
