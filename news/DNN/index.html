@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.9.179/pdf.min.js"></script>
+    <link rel="icon" href="DNN_Logo.jpg" type="image/jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Democracy News Network</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #0047ab;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        footer {
+        background-color: #0047ab;
+        color: white;
+        padding: 1rem 2rem;
+        text-align: center;
+        position: fixed; /* Fixes the footer to the bottom of the viewport */
+        bottom: 0; /* Positions the footer at the bottom */
+        left: 0; /* Ensures it spans from the left edge */
+        width: 100%; /* Makes the footer span the full width */
+        display: flex; /* Ensures child elements align correctly */
+        align-items: center;
+        gap: 10px;
+        z-index: 1000; /* Ensures it stays above other content */
+        }
+
+        header img {
+            height: 40px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        main {
+            display: flex;
+            padding: 2rem;
+            gap: 2rem;
+        }
+        .file-list {
+            flex: 1;
+            max-width: 300px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .file-list h2 {
+            background-color: #0047ab;
+            color: white;
+            margin: 0;
+            padding: 1rem;
+            text-align: center;
+        }
+        .file-list ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .file-list li {
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .file-list li:hover {
+            background-color: #f0f0f0;
+        }
+        .file-viewer {
+            flex: 2;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: 600px;
+        }
+        .file-viewer h2 {
+            margin-top: 0;
+            border-bottom: 2px solid #0047ab;
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="DNN_Logo.jpg" alt="Logo">
+        <h1>Democracy News Network</h1>
+    </header>
+    <main>
+        <div class="file-list">
+            <h2>All Issues</h2>
+            <ul id="fileList">
+                <!-- Dynamically populated -->
+            </ul>
+        </div>
+        <div class="file-viewer">
+            <h2 id="fileTitle">Select an issue to view</h2>
+            <div id="fileContent">The content of the selected issue will be displayed here.</div>
+        </div>
+    </main>
+    <script>
+        const fileList = document.getElementById('fileList');
+        const fileTitle = document.getElementById('fileTitle');
+        const fileContent = document.getElementById('fileContent');
+    
+        // Function to get issue number from URL
+        function getIssueFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('issue'); // Get the "issue" parameter
+        }
+    
+        // Function to remove file extension from filename
+        function removeExtension(filename) {
+            return filename.replace(/\.[^/.]+$/, ""); // Removes the last dot and everything after it
+        }
+    
+        // Function to update the URL without reloading the page
+        function updateURL(issueNumber) {
+            const newURL = `${window.location.pathname}?issue=${issueNumber}`;
+            history.pushState({ issue: issueNumber }, '', newURL);
+        }
+    
+        // Render a file (PDF)
+        async function renderIssue(issueNumber) {
+            updateURL(issueNumber); // Update URL when issue is selected
+            const filePath = `previous/${issueNumber}.pdf`;
+            fileTitle.textContent = `Democracy News Network issue ${issueNumber}`;
+            fileContent.innerHTML = '';
+    
+            try {
+                const pdf = await pdfjsLib.getDocument(filePath).promise;
+                for (let i = 1; i <= pdf.numPages; i++) {
+                    const page = await pdf.getPage(i);
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+                    await page.render({ canvasContext: context, viewport }).promise;
+                    fileContent.appendChild(canvas);
+                }
+            } catch (error) {
+                fileContent.innerHTML = `<p style="color: red;">Error loading issue ${issueNumber}: File not found.</p>`;
+            }
+        }
+    
+        // Fetch the list of files from the text file
+        async function fetchFileList() {
+            try {
+                const response = await fetch('previous/filelist.txt');
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch file list: ${response.statusText}`);
+                }
+                const text = await response.text();
+                const files = text.split('\n').filter(line => line.trim() !== '').map(path => ({
+                    name: path.split('/').pop(),
+                    path: path.trim()
+                }));
+                populateFileList(files);
+    
+                // If there's an issue number in the URL, open it
+                const issueNumber = getIssueFromURL();
+                if (issueNumber) {
+                    renderIssue(issueNumber);
+                }
+            } catch (error) {
+                fileContent.textContent = `Error: ${error.message}`;
+            }
+        }
+    
+        // Populate the file list in the UI
+        function populateFileList(files) {
+            files.forEach(file => {
+                const li = document.createElement('li');
+                const issueNumber = removeExtension(file.name).replace('Democracy News Network ', '');
+                li.textContent = `Issue ${issueNumber}`; // Display as "Issue X.X"
+                li.onclick = () => renderIssue(issueNumber);
+                fileList.appendChild(li);
+            });
+        }
+    
+        // Handle back/forward navigation to load the correct issue
+        window.addEventListener('popstate', (event) => {
+            const issueNumber = event.state ? event.state.issue : null;
+            if (issueNumber) {
+                renderIssue(issueNumber);
+            } else {
+                fileTitle.textContent = "Select an issue to view";
+                fileContent.innerHTML = "The content of the selected issue will be displayed here.";
+            }
+        });
+    
+        // Initialize the file list
+        fetchFileList();
+    </script>
+    
+
+<footer>
+     <img src="DNN_Logo.jpg" alt="Logo" style="height: 40px;">
+    <p>Democracy News Network (Joseph Redman & Bob Bobson) © 2025</p> 
+</footer>
+</body>
+</html>
