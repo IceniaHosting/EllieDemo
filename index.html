@@ -122,14 +122,15 @@
         /* Ensure footer stays at the bottom */
         .footer1 {
             width: 100%;
-            height: 3.33h;
+            height: 6.66vh; /* Same as header height */
             background-color: #008f66;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5vh;
-            margin-top: auto;
+            position: fixed;
+            bottom: 0;
         }
 
     </style>
@@ -183,7 +184,9 @@
         Closable News Tab<br>Square
     </div>
 
-    <div class="footer1">Copyright Bob Bobson (Art) and Joe (Code) 60px down (6.66% of screen)</div>
+    <div class="footer1">
+        Copyright Bob Bobson (Art) and Joe (Code) 60px down (6.66% of screen)
+    </div>
 
     <!-- JavaScript to block copying, cutting, pasting, and right-click -->
     <script>
