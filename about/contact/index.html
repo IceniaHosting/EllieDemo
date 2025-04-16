@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.Gov/About/Contact</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('./Backgrounds.png') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .header1 {
+            width: 100%;
+            height: 6.66vh;
+            background-color: #008f66;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5vh;
+        }
+
+        .header2 {
+            width: 100%;
+            height: 3.33vh;
+            background-color: #e5a55e;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2vh;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 2px;
+            width: 88.33vw;
+            height: calc(88.33vw / 2); /* Ensures square aspect ratio */
+        }
+
+        .s {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #66ffd9;
+            border: 1px solid black;
+            font-size: 2.5vh;
+            width: 100%;
+            height: 100%;
+            position: relative; /* This helps anchor inside to stretch correctly */
+        }
+
+        .s a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .s img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Ensure footer stays at the bottom */
+        .footer1 {
+            width: 100%;
+            height: 6.66vh; /* Same as header height */
+            background-color: #008f66;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5vh;
+            position: relative;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header1">Contact</div>
+    <div class="header2">Click one of the boxes to contact us!</div>
+
+    <div class="container">
+        <div class="s">
+            Email
+            <a href="democracy.gov.uk@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer">
+            </a>
+        </div>
+        <div class="s">
+            Instagram
+          <a href="https://www.instagram.com/democracy.gov.uk/"
+            target="_blank"
+            rel="noopener noreferrer">
+            </a>
+        </div>
+        <div class="s">
+            Discord
+          <a href="https://discord.gg/waYRuyTp84"
+            target="_blank"
+            rel="noopener noreferrer">
+        </div>
+        <div class="s">
+            Youtube (TBD)
+        </div>
+        <div class="s">
+            Threads
+          <a href="https://www.threads.net/@democracy.gov.uk"
+            target="_blank"
+            rel="noopener noreferrer">
+        </div>
+        <div class="s">
+            TBD
+        </div>
+        <div class="s">
+            TBD
+        </div>
+        <div class="s">
+            TBD
+        </div>
+    </div>
+
+    <div class="footer1">
+        Copyright Bob Bobson (Art / Code) and Joseph Redman (Code). | We are not responsible for the content of other websites.
+    </div>
+
+    <!-- JavaScript to block copying, cutting, pasting, and right-click -->
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault()); // Disable right-click
+
+        document.addEventListener('keydown', event => {
+            if (event.ctrlKey && ['c', 'v', 'x', 'a'].includes(event.key)) {
+                event.preventDefault(); // Prevent Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+A
+            }
+        });
+
+        document.addEventListener('copy', event => event.preventDefault()); // Prevent Copy
+        document.addEventListener('cut', event => event.preventDefault()); // Prevent Cut
+        document.addEventListener('paste', event => event.preventDefault()); // Prevent Paste
+    </script>
+</body>
+</html>
